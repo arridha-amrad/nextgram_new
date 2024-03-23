@@ -26,7 +26,7 @@ export default function PostCard({ post }: Props) {
         <ImageCarousel urls={images} />
       </div>
       <div className="h-10 w-full flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <PostLikedButton post={post} />
           <CommentButton postId={post.id} />
           <ShareButton />

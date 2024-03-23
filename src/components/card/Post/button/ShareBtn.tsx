@@ -16,8 +16,8 @@ export default function ShareButton() {
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="22"
           x2="9.218"
           y1="3"

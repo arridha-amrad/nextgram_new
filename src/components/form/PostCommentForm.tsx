@@ -4,7 +4,6 @@ import { baseURL } from '@/actions/variables';
 import { IPost } from '@/lib/mongoose/models/Post/types';
 import usePostsStore from '@/lib/zustand/store/postStore';
 import FaceSmileIcon from '@heroicons/react/24/outline/FaceSmileIcon';
-import { Button, Input } from '@nextui-org/react';
 import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 import { useSession } from 'next-auth/react';
 import { FormEvent, useState } from 'react';
@@ -41,7 +40,7 @@ const PostCommentForm = ({ post }: Props) => {
         })
       });
       const res = await response.json();
-      addComment(res.comment);
+      addComment(res.comment, post.id);
       setComment('');
     } catch (err) {
       console.log(err);
@@ -61,26 +60,25 @@ const PostCommentForm = ({ post }: Props) => {
           onChange={(e) => setComment(e.target.value)}
           type="text"
           placeholder="Add comment..."
-          className="pr-20 w-full text-sm bg-transparent outline-none"
+          className="pr-16 w-full text-sm bg-transparent outline-none"
         />
-
-        <div className="top-1/2 right-8 -translate-y-1/2 absolute">
-          {!!comment && (
+        <div className="top-1/2 flex items-center gap-2 right-0 -translate-y-1/2 absolute">
+          <>
+            {!!comment && (
+              <button
+                type="submit"
+                className="font-medium disabled:brightness-75 text-primary-500 text-sm"
+              >
+                Send
+              </button>
+            )}
             <button
-              type="submit"
-              className="font-semibold disabled:brightness-75 text-primary-500 text-sm"
+              className="group"
+              onClick={() => setShowEmojiPicker((val) => !val)}
             >
-              Send
+              <FaceSmileIcon className="w-5 h-5 group-hover:text-gray-500 transition-colors duration-250 ease-linear" />
             </button>
-          )}
-        </div>
-        <div className="top-1/2 right-0 -translate-y-1/2 absolute">
-          <button
-            className="group"
-            onClick={() => setShowEmojiPicker((val) => !val)}
-          >
-            <FaceSmileIcon className="w-5 h-5 group-hover:text-gray-500 transition-colors duration-250 ease-linear" />
-          </button>
+          </>
         </div>
         {showEmojiPicker && (
           <div className="absolute right-10 bottom-full z-50 ">

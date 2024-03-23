@@ -1,6 +1,5 @@
 'use client';
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Button } from '@nextui-org/react';
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
@@ -35,11 +34,7 @@ export default function SearchButton({ children }: Props) {
             ? 'justify-center'
             : 'xl:justify-start justify-center xl:pl-4 xl:w-[200px] w-max'
         } `}
-        startContent={
-          <MagnifyingGlassIcon
-            className={isSearch ? 'w-7 h-7 stroke-[3px]' : 'w-7 h-7'}
-          />
-        }
+        startContent={isSearch ? <ActiveIcon /> : <InActiveIcon />}
         isIconOnly={true}
       >
         {!isDenseSidebar && (
@@ -66,3 +61,73 @@ export default function SearchButton({ children }: Props) {
     </>
   );
 }
+
+const ActiveIcon = () => {
+  return (
+    <svg
+      aria-label="Search"
+      className="x1lliihq x1n2onr6 x5n08af"
+      fill="currentColor"
+      height="24"
+      role="img"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <title>Search</title>
+      <path
+        d="M18.5 10.5a8 8 0 1 1-8-8 8 8 0 0 1 8 8Z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+      ></path>
+      <line
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        x1="16.511"
+        x2="21.643"
+        y1="16.511"
+        y2="21.643"
+      ></line>
+    </svg>
+  );
+};
+
+const InActiveIcon = () => {
+  return (
+    <svg
+      aria-label="Search"
+      className="x1lliihq x1n2onr6 x5n08af"
+      fill="currentColor"
+      height="24"
+      role="img"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <title>Search</title>
+      <path
+        d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      ></path>
+      <line
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        x1="16.511"
+        x2="22"
+        y1="16.511"
+        y2="22"
+      ></line>
+    </svg>
+  );
+};
