@@ -25,7 +25,7 @@ export default function PostCard({ post }: Props) {
       <div style={{ height }} className="max-h-[600px] overflow-hidden rounded">
         <ImageCarousel urls={images} />
       </div>
-      <div className="h-10 w-full flex items-center justify-between">
+      <div className="h-14 w-full flex items-center justify-between">
         <div className="flex items-center gap-3">
           <PostLikedButton post={post} />
           <CommentButton postId={post.id} />

@@ -22,7 +22,7 @@ export default function HomeBtn() {
         size="lg"
         as={Link}
         href="/"
-        className={`flex ${
+        className={`flex group ${
           isDenseSidebar
             ? 'justify-center'
             : 'xl:justify-start justify-center xl:pl-4 xl:w-[200px] w-max'
@@ -50,7 +50,7 @@ const InActiveIcon = () => {
   return (
     <svg
       aria-label="Home"
-      className="x1lliihq x1n2onr6 x5n08af"
+      className="group-hover:scale-110 transition-transform duration-250 ease-linear"
       fill="currentColor"
       height="24"
       role="img"
@@ -62,8 +62,8 @@ const InActiveIcon = () => {
         d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997A2.997 2.997 0 0 1 15 16.545V22h7V11.543L12 2 2 11.543V22h7.005Z"
         fill="none"
         stroke="currentColor"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinejoin="round"
+        strokeWidth="2"
       ></path>
     </svg>
   );
@@ -73,7 +73,7 @@ const ActiveIcon = () => {
   return (
     <svg
       aria-label="Home"
-      className="x1lliihq x1n2onr6 x5n08af"
+      className="group-hover:scale-110 transition-transform duration-250 ease-linear"
       fill="currentColor"
       height="24"
       role="img"

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@nextui-org/react';
+import { Button, Tooltip } from '@nextui-org/react';
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useSidebarContext } from '../SidebarContext';
@@ -22,25 +22,27 @@ export default function SearchButton({ children }: Props) {
 
   return (
     <>
-      <Button
-        onClick={() => {
-          setIsSearch((val) => !val);
-          setIsNotification(false);
-        }}
-        variant="light"
-        size="lg"
-        className={`flex ${
-          isDenseSidebar
-            ? 'justify-center'
-            : 'xl:justify-start justify-center xl:pl-4 xl:w-[200px] w-max'
-        } `}
-        startContent={isSearch ? <ActiveIcon /> : <InActiveIcon />}
-        isIconOnly={true}
-      >
-        {!isDenseSidebar && (
-          <span className="xl:block pl-3 hidden">Search</span>
-        )}
-      </Button>
+      <Tooltip placement="right" content="Search" showArrow>
+        <Button
+          onClick={() => {
+            setIsSearch((val) => !val);
+            setIsNotification(false);
+          }}
+          variant="light"
+          size="lg"
+          className={`flex group ${
+            isDenseSidebar
+              ? 'justify-center'
+              : 'xl:justify-start justify-center xl:pl-4 xl:w-[200px] w-max'
+          } `}
+          startContent={isSearch ? <ActiveIcon /> : <InActiveIcon />}
+          isIconOnly={true}
+        >
+          {!isDenseSidebar && (
+            <span className="xl:block pl-3 hidden">Search</span>
+          )}
+        </Button>
+      </Tooltip>
       {isSearch &&
         createPortal(
           <div
@@ -66,7 +68,7 @@ const ActiveIcon = () => {
   return (
     <svg
       aria-label="Search"
-      className="x1lliihq x1n2onr6 x5n08af"
+      className="group-hover:scale-110 transition-transform duration-250 ease-linear"
       fill="currentColor"
       height="24"
       role="img"
@@ -101,7 +103,7 @@ const InActiveIcon = () => {
   return (
     <svg
       aria-label="Search"
-      className="x1lliihq x1n2onr6 x5n08af"
+      className="group-hover:scale-110 transition-transform duration-250 ease-linear"
       fill="currentColor"
       height="24"
       role="img"
