@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Tooltip } from '@nextui-org/react';
+import { Tooltip } from '@nextui-org/react';
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useSidebarContext } from '../SidebarContext';
@@ -22,26 +22,28 @@ export default function SearchButton({ children }: Props) {
 
   return (
     <>
-      <Tooltip placement="right" content="Search" showArrow>
-        <Button
+      <Tooltip
+        content="Search"
+        placement="right"
+        showArrow
+        classNames={{ base: isDenseSidebar ? 'xl:block' : 'xl:hidden' }}
+      >
+        <button
           onClick={() => {
             setIsSearch((val) => !val);
             setIsNotification(false);
           }}
-          variant="light"
-          size="lg"
-          className={`flex group ${
+          className={`flex h-12 rounded-lg hover:bg-neutral-200 hover:dark:bg-neutral-600 hover:bg-opacity-50 items-center group ${
             isDenseSidebar
-              ? 'justify-center'
-              : 'xl:justify-start justify-center xl:pl-4 xl:w-[200px] w-max'
+              ? 'justify-center aspect-square'
+              : 'xl:justify-start justify-center xl:pl-4 xl:w-[200px] aspect-square'
           } `}
-          startContent={isSearch ? <ActiveIcon /> : <InActiveIcon />}
-          isIconOnly={true}
         >
+          {isSearch ? <ActiveIcon /> : <InActiveIcon />}
           {!isDenseSidebar && (
             <span className="xl:block pl-3 hidden">Search</span>
           )}
-        </Button>
+        </button>
       </Tooltip>
       {isSearch &&
         createPortal(
