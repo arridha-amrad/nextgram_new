@@ -2,6 +2,15 @@ import { NextAuthOptions } from 'next-auth';
 import { config } from '../auth';
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt'
+  },
+  cookies: {
+    sessionToken: {
+      name: 'Nid',
+      options: {}
+    }
+  },
   pages: {
     signIn: '/accounts/login'
   },

@@ -9,37 +9,32 @@ const schema = new mongoose.Schema<
   UserModel,
   IUserMethods,
   IUserVirtuals
->(
-  {
-    avatar: { type: String },
-    email: { type: String, unique: true, required: true },
-    name: { type: String, required: true },
-    password: { type: String },
-    provider: { type: String, required: true, enum: providers },
-    username: { type: String, required: true, unique: true },
-    avatarPublicId: String,
-    bio: String,
-    occupation: String,
-    threadUsername: String,
-    web: String,
-    followers: [
-      {
-        ref: 'User',
-        type: mongoose.Schema.Types.ObjectId
-      }
-    ],
-    followings: [
-      {
-        ref: 'User',
-        type: mongoose.Schema.Types.ObjectId
-      }
-    ],
-    searchedUsers: [{ ref: 'User', type: mongoose.Schema.Types.ObjectId }]
-  },
-  {
-    timestamps: true
-  }
-);
+>({
+  avatar: { type: String },
+  email: { type: String, unique: true, required: true },
+  name: { type: String, required: true },
+  password: { type: String },
+  provider: { type: String, required: true, enum: providers },
+  username: { type: String, required: true, unique: true },
+  avatarPublicId: String,
+  bio: String,
+  occupation: String,
+  threadUsername: String,
+  web: String,
+  followers: [
+    {
+      ref: 'User',
+      type: mongoose.Schema.Types.ObjectId
+    }
+  ],
+  followings: [
+    {
+      ref: 'User',
+      type: mongoose.Schema.Types.ObjectId
+    }
+  ],
+  searchedUsers: [{ ref: 'User', type: mongoose.Schema.Types.ObjectId }]
+});
 
 schema.plugin(mongooseLeanVirtuals);
 
@@ -55,6 +50,6 @@ schema.virtual('id').get(function () {
   return this._id.toString();
 });
 
-const User = mongoose.models.User || mongoose.model<UserModel>('User', schema);
+const User = mongoose.models.User ?? mongoose.model<UserModel>('User', schema);
 
 export default User as UserModel;

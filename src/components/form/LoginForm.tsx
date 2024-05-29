@@ -85,7 +85,7 @@ export default function LoginForm() {
           variant="solid"
           color="primary"
           fullWidth
-          className="font-semibold"
+          className="font-semibold font-sans"
         >
           Login
         </Button>

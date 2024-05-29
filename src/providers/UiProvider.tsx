@@ -2,15 +2,16 @@
 
 import { NextUIProvider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   return (
     <NextUIProvider navigate={router.push}>
-      <main className="text-foreground bg-background">
-        <div className="container mx-auto min-h-screen">{children}</div>
-      </main>
+      <NextThemesProvider attribute="class" enableSystem>
+        {children}
+      </NextThemesProvider>
     </NextUIProvider>
   );
 }

@@ -23,6 +23,8 @@ export type IUser = {
   bio?: string;
   web?: string;
   avatarPublicId?: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type TProfileData = {
